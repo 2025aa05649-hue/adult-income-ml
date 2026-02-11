@@ -5,6 +5,11 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 st.title("Income Prediction Classification App")
 
+model_choice = st.selectbox(
+    "Select Model",
+    ["Logistic Regression", "Decision Tree", "KNN", "Naive Bayes", "Random Forest", "XGBoost"]
+)
+
 model_files = {
     "Logistic Regression": "model/Logistic_Regression.pkl",
     "Decision Tree": "model/Decision_Tree.pkl",
