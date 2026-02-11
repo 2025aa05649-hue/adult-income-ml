@@ -7,13 +7,12 @@ st.title("Income Prediction Classification App")
 
 model_choice = st.selectbox(
     "Select Model",
-    ["Logistic Regression", "Decision Tree", "KNN", "Naive Bayes", "Random Forest", "XGBoost"]
+    ["Logistic Regression", "Decision Tree", "Naive Bayes", "Random Forest", "XGBoost"]
 )
 
 model_files = {
     "Logistic Regression": "model/Logistic_Regression.pkl",
     "Decision Tree": "model/Decision_Tree.pkl",
-    "KNN": "model/KNN.pkl",
     "Naive Bayes": "model/Naive_Bayes.pkl",
     "Random Forest": "model/Random_Forest.pkl",
     "XGBoost": "model/XGBoost.pkl"
