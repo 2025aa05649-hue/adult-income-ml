@@ -14,7 +14,7 @@ uploaded_file = st.file_uploader("Upload CSV test file", type=["csv"])
 
 if uploaded_file:
     data = pd.read_csv(uploaded_file)
-    model = joblib.load(f,"model/{model_choice}.pkl")
+    model = joblib.load(f"model/{model_choice}.pkl")
     predictions = model.predict(data)
 
     st.write("Predictions:", predictions)
