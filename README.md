@@ -1,43 +1,75 @@
-# Adult Income Classification using Machine Learning
+# Machine Learning Assignment 2 
 
-## **a. Problem Statement**
+## Problem Statement
+The goal of this assignment is to implement multiple classification models on a chosen dataset, evaluate their performance using standard metrics, and deploy an interactive Streamlit web application. The app should allow dataset upload, model selection, and display of evaluation results.
 
-The goal of this project is to predict whether a person earns more than $50,000 per year based on demographic and employment-related attributes such as age, education, occupation, work class, and hours worked per week. This is a binary classification problem where accurate prediction can help in socio-economic analysis and policy planning.
+## Dataset Description
+- **Dataset Source:** [Add Kaggle/UCI link here]
+- **Type:** [Binary / Multi-class classification]
+- **Number of Features:** [At least 12]
+- **Number of Instances:** [At least 500]
+- **Target Variable:** [Specify target column]
 
-## **b. Dataset Description**
+## Models Implemented
+The following six classification models were implemented on the same dataset:
+1. Logistic Regression  
+2. Decision Tree Classifier  
+3. K-Nearest Neighbor (kNN) Classifier  
+4. Naive Bayes Classifier (Gaussian or Multinomial)  
+5. Random Forest (Ensemble)  
+6. XGBoost (Ensemble)  
 
-The dataset used in this project is the **Adult Income dataset** from the UCI Machine Learning Repository (Kaggle version). It contains more than **48,000 records** and **14 attributes** describing individuals, including age, education, marital status, occupation, race, gender, hours worked per week, and capital gain/loss.
+## Evaluation Metrics
+The models were evaluated using the following metrics:
+- Accuracy  
+- AUC Score  
+- Precision  
+- Recall  
+- F1 Score  
+- Matthews Correlation Coefficient (MCC)  
 
-The target variable is **`income`**, which has two classes:
+### Comparison Table
 
-* `<=50K` → income less than or equal to $50,000
-* `>50K` → income greater than $50,000
+| ML Model Name         | Accuracy | AUC | Precision | Recall | F1 | MCC |
+|------------------------|----------|-----|-----------|--------|----|-----|
+| Logistic Regression    |          |     |           |        |    |     |
+| Decision Tree          |          |     |           |        |    |     |
+| kNN                    |          |     |           |        |    |     |
+| Naive Bayes            |          |     |           |        |    |     |
+| Random Forest          |          |     |           |        |    |     |
+| XGBoost                |          |     |           |        |    |     |
 
-The dataset satisfies the assignment requirement of having more than **500 instances** and more than **12 features**.
+*(Fill in values after running models.)*
 
-## **c. Models Used and Performance Comparison**
+## Observations on Model Performance
 
-Six machine learning classification models were trained and evaluated using Accuracy, AUC, Precision, Recall, F1 Score, and Matthews Correlation Coefficient (MCC).
+| ML Model Name          | Observation about model performance |
+|-------------------------|-------------------------------------|
+| Logistic Regression     |                                     |
+| Decision Tree           |                                     |
+| kNN                     |                                     |
+| Naive Bayes             |                                     |
+| Random Forest           |                                     |
+| XGBoost                 |                                     |
 
-| ML Model                 | Accuracy     | AUC          | Precision    | Recall       | F1 Score     | MCC          |
-| ------------------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-| Logistic Regression      | 0.851264     | 0.905249     | 0.742213     | 0.586837     | 0.655442     | 0.568558     |
-| Decision Tree            | 0.818405     | 0.750716     | 0.624305     | 0.619533     | 0.621910     | 0.502425     |
-| K-Nearest Neighbors      | 0.817586     | 0.830759     | 0.642750     | 0.547771     | 0.591472     | 0.477526     |
-| Naive Bayes              | 0.598424     | 0.848864     | 0.368984     | 0.937580     | 0.529560     | 0.376022     |
-| Random Forest (Ensemble) | 0.852697     | 0.900382     | 0.734151     | 0.609766     | 0.666203     | 0.576798     |
-| XGBoost (Ensemble)       | **0.872351** | **0.926159** | **0.782942** | **0.650955** | **0.710874** | **0.634277** |
+*(Add insights such as which model performed best, trade-offs between metrics, etc.)*
 
-## **d. Model Observations**
+## Streamlit App Features
+- Dataset upload option (CSV)  
+- Model selection dropdown  
+- Display of evaluation metrics  
+- Confusion matrix visualization  
+- Classification report  
+- Download button for metrics  
 
-| ML Model            | Observation about Model Performance                                                                               |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Logistic Regression | Provides strong baseline performance with high AUC, indicating good class separability.                           |
-| Decision Tree       | Performs reasonably well but is prone to overfitting, resulting in lower AUC.                                     |
-| K-Nearest Neighbors | Achieves moderate accuracy but is sensitive to feature scaling and noise.                                         |
-| Naive Bayes         | Produces very high recall but low precision, meaning it predicts many false positives.                            |
-| Random Forest       | Offers better stability and accuracy by combining multiple decision trees.                                        |
-| XGBoost             | Achieves the **best overall performance** across all metrics, making it the most suitable model for this dataset. |
+## Deployment
+- **GitHub Repository Link:** [Insert link]  
+- **Live Streamlit App Link:** [Insert deployed app link]  
+- **Screenshot of BITS Virtual Lab Execution:** [Insert screenshot]  
 
-
-If you want, send me your **Streamlit live link** and I will verify it before you upload your final PDF 🚀
+## Final Submission Checklist
+- [x] GitHub repo link works  
+- [x] Streamlit app link opens correctly  
+- [x] App loads without errors  
+- [x] All required features implemented  
+- [x] README.md updated and included in submission PDF  
