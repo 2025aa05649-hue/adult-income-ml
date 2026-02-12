@@ -69,7 +69,7 @@ if target_column and target_column in df.columns:
     # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Scale features (important for Logistic Regression, KNN, etc.)
+    # Scale features
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
@@ -118,9 +118,20 @@ if target_column and target_column in df.columns:
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
     st.pyplot(fig)
 
-    # Classification Report
-    st.write("### Classification Report")
-    st.text(classification_report(y_test, y_pred))
+    # Classification Report in Table Format
+    st.write("### Classification Report (Table Format)")
+    report_dict = classification_report(y_test, y_pred, output_dict=True)
+    report_df = pd.DataFrame(report_dict).transpose().round(3)
+    st.dataframe(report_df)
+
+    # Download button for classification report
+    csv_report = report_df.to_csv().encode("utf-8")
+    st.download_button(
+        label="Download Classification Report as CSV",
+        data=csv_report,
+        file_name="classification_report.csv",
+        mime="text/csv"
+    )
 
     # Download button for metrics
     metrics_df = pd.DataFrame({
@@ -131,10 +142,10 @@ if target_column and target_column in df.columns:
         "F1 Score": [f1],
         "MCC": [mcc]
     })
-    csv = metrics_df.to_csv(index=False).encode("utf-8")
+    csv_metrics = metrics_df.to_csv(index=False).encode("utf-8")
     st.download_button(
         label="Download Metrics as CSV",
-        data=csv,
+        data=csv_metrics,
         file_name="model_metrics.csv",
         mime="text/csv"
     )
