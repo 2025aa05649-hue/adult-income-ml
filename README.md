@@ -4,11 +4,11 @@
 The goal of this assignment is to implement multiple classification models on a chosen dataset, evaluate their performance using standard metrics, and deploy an interactive Streamlit web application. The app should allow dataset upload, model selection, and display of evaluation results.
 
 ## Dataset Description
-- **Dataset Source:** [Add Kaggle/UCI link here]
+- **Dataset Source:** []
 - **Type:** [Binary / Multi-class classification]
 - **Number of Features:** [At least 12]
 - **Number of Instances:** [At least 500]
-- **Target Variable:** [Specify target column]
+- **Target Variable:** [income]
 
 ## Models Implemented
 The following six classification models were implemented on the same dataset:
@@ -63,13 +63,7 @@ The models were evaluated using the following metrics:
 - Download button for metrics  
 
 ## Deployment
-- **GitHub Repository Link:** [Insert link]  
-- **Live Streamlit App Link:** [Insert deployed app link]  
+- **GitHub Repository Link:** [https://github.com/2025aa05649-hue/adult-income-ml/blob/main/app.py]  
+- **Live Streamlit App Link:** [https://adult-income-ml-a4dvqwbvgrc3qkqjafymqk.streamlit.app/]  
 - **Screenshot of BITS Virtual Lab Execution:** [Insert screenshot]  
-
-## Final Submission Checklist
-- [x] GitHub repo link works  
-- [x] Streamlit app link opens correctly  
-- [x] App loads without errors  
-- [x] All required features implemented  
-- [x] README.md updated and included in submission PDF  
+ 
