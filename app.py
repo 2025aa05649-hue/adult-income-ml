@@ -17,6 +17,9 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 
+# Scaler
+from sklearn.preprocessing import StandardScaler
+
 # Streamlit UI
 st.title("BITS Pilani ML Assignment 2 - Classification Models")
 
@@ -65,6 +68,11 @@ if target_column and target_column in df.columns:
 
     # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Scale features (important for Logistic Regression, KNN, etc.)
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
 
     # Model selection
     if model_choice == "Logistic Regression":
