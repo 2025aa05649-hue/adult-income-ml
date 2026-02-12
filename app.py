@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score, matthews_corrcoef, confusion_matrix, classification_report
+from sklearn.metrics import (
+    accuracy_score, roc_auc_score, precision_score, recall_score,
+    f1_score, matthews_corrcoef, confusion_matrix, classification_report
+)
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -10,7 +13,7 @@ import seaborn as sns
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB, MultinomialNB
+from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 
@@ -34,8 +37,16 @@ if uploaded_file is not None:
     target_column = st.sidebar.text_input("Enter Target Column Name")
 
     if target_column and target_column in df.columns:
+        # Separate features and target
         X = df.drop(columns=[target_column])
         y = df[target_column]
+
+        # Encode categorical features
+        X = pd.get_dummies(X, drop_first=True)
+
+        # Encode target if categorical
+        if y.dtype == "object":
+            y = pd.factorize(y)[0]
 
         # Train-test split
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -48,7 +59,6 @@ if uploaded_file is not None:
         elif model_choice == "KNN":
             model = KNeighborsClassifier()
         elif model_choice == "Naive Bayes":
-            # Default GaussianNB
             model = GaussianNB()
         elif model_choice == "Random Forest":
             model = RandomForestClassifier()
