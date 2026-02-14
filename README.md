@@ -1,69 +1,51 @@
-# Machine Learning Assignment 2 
+# ML Assignment 2 - Multiple Classifiers + Streamlit App
 
-## Problem Statement
-The goal of this assignment is to implement multiple classification models on a chosen dataset, evaluate their performance using standard metrics, and deploy an interactive Streamlit web application. The app should allow dataset upload, model selection, and display of evaluation results.
+## a) Problem statement
+Build and compare multiple machine-learning classification models on **one public dataset**, compute evaluation metrics, and demonstrate the models in an interactive **Streamlit** web application.  
+The app supports uploading test CSV data, selecting a model, viewing evaluation metrics, and visualizing a confusion matrix/classification report.
 
-## Dataset Description
-- **Dataset Source:** []
-- **Type:** [Binary / Multi-class classification]
-- **Number of Features:** [At least 12]
-- **Number of Instances:** [At least 500]
-- **Target Variable:** [income]
+---
 
-## Models Implemented
-The following six classification models were implemented on the same dataset:
-1. Logistic Regression  
-2. Decision Tree Classifier  
-3. K-Nearest Neighbor (kNN) Classifier  
-4. Naive Bayes Classifier (Gaussian or Multinomial)  
-5. Random Forest (Ensemble)  
-6. XGBoost (Ensemble)  
+## b) Dataset description
+**Dataset:** *Adult Income Dataset* (UCI Machine Learning Repository).  
+- **Task:** Binary classification (income >50K vs ≤50K).  
+- **Size:** 48,842 instances and 14 features.  
+- **Features:** Demographic and employment attributes.  
+- **Target encoding:** `1` → income >50K, `0` → income ≤50K.  
 
-## Evaluation Metrics
-The models were evaluated using the following metrics:
-- Accuracy  
-- AUC Score  
-- Precision  
-- Recall  
-- F1 Score  
-- Matthews Correlation Coefficient (MCC)  
+---
 
-### Comparison Table
+## c) Models used + evaluation metrics
+Models implemented:
+- Logistic Regression  
+- Decision Tree  
+- kNN  
+- Naive Bayes  
+- Random Forest  
+- XGBoost  
 
-| ML Model Name         | Accuracy | AUC | Precision | Recall | F1 | MCC |
-|------------------------|----------|-----|-----------|--------|----|-----|
-| Logistic Regression    |          |     |           |        |    |     |
-| Decision Tree          |          |     |           |        |    |     |
-| kNN                    |          |     |           |        |    |     |
-| Naive Bayes            |          |     |           |        |    |     |
-| Random Forest          |          |     |           |        |    |     |
-| XGBoost                |          |     |           |        |    |     |
+Metrics: Accuracy, AUC, Precision, Recall, F1, MCC.
 
-*(Fill in values after running models.)*
+---
 
-## Observations on Model Performance
+## Dependencies & Installation
 
-| ML Model Name          | Observation about model performance |
-|-------------------------|-------------------------------------|
-| Logistic Regression     |                                     |
-| Decision Tree           |                                     |
-| kNN                     |                                     |
-| Naive Bayes             |                                     |
-| Random Forest           |                                     |
-| XGBoost                 |                                     |
+### Requirements
+The project depends on the following libraries:
 
-*(Add insights such as which model performed best, trade-offs between metrics, etc.)*
+- `pandas==2.2.0`  
+- `numpy==1.26.4`  
+- `scikit-learn==1.4.0`  
+- `xgboost==2.0.3`  
+- `matplotlib==3.8.2`  
+- `seaborn==0.13.2`  
+- `streamlit==1.31.0`  
+- `joblib==1.3.2`  
 
-## Streamlit App Features
-- Dataset upload option (CSV)  
-- Model selection dropdown  
-- Display of evaluation metrics  
-- Confusion matrix visualization  
-- Classification report  
-- Download button for metrics  
+### Installation
+Clone the repository and install dependencies:
 
-## Deployment
-- **GitHub Repository Link:** [https://github.com/2025aa05649-hue/adult-income-ml/blob/main/app.py]  
-- **Live Streamlit App Link:** [https://adult-income-ml-a4dvqwbvgrc3qkqjafymqk.streamlit.app/]  
-- **Screenshot of BITS Virtual Lab Execution:** [Insert screenshot]  
- 
+```bash
+git clone https://github.com/username/ml-assignment2.git
+cd ml-assignment2
+pip install -r requirements.txt
