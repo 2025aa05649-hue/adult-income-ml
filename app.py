@@ -126,13 +126,19 @@ if df is not None:
             st.subheader("🧩 Confusion Matrix")
             cm = confusion_matrix(y_test, y_pred)
             fig, ax = plt.subplots(figsize=(8, 6))
-            sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
-                        xticklabels=["<=50K", ">50K"],
-                        yticklabels=["<=50K", ">50K"],
-                        ax=ax, cbar_kws={"label": "Count"},
-                        annot_kws={"size": 14, "weight": "bold"})
+            sns.heatmap(
+                cm,
+                annot=True,
+                fmt="d",
+                cmap="Blues",
+                xticklabels=["<=50K", ">50K"],
+                yticklabels=["<=50K", ">50K"],
+                ax=ax,
+                cbar_kws={"label": "Count"},
+                annot_kws={"size": 14, "weight": "bold"}
+            )
             ax.set_xlabel("Predicted Label", fontsize=12, fontweight="bold")
-            ax.set_ylabel("True Label", fontsize=12, fontweight="bold")
+            ax.set_ylabel("Actual Label", fontsize=12, fontweight="bold")
             ax.set_title(f"Confusion Matrix - {model_name}", fontsize=14, fontweight="bold")
             st.pyplot(fig)
 
