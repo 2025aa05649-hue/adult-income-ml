@@ -95,17 +95,30 @@ if df is not None:
 
             st.subheader("📊 Evaluation Metrics")
             metrics_df = pd.DataFrame(metrics, index=["Score"]).T
-            st.table(metrics_df)
+            # Round metrics to 4 decimal places for better readability
+            metrics_df_display = metrics_df.round(4)
+            st.table(metrics_df_display)
+
+            # Display metrics in columns
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Accuracy", f"{metrics['Accuracy']:.4f}")
+            with col2:
+                st.metric("AUC", f"{metrics['AUC']:.4f}")
+            with col3:
+                st.metric("F1-Score", f"{metrics['F1-Score']:.4f}")
 
             st.subheader("🧩 Confusion Matrix")
             cm = confusion_matrix(y_test, y_pred)
-            fig, ax = plt.subplots()
+            fig, ax = plt.subplots(figsize=(8, 6))
             sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
                         xticklabels=["<=50K", ">50K"],
                         yticklabels=["<=50K", ">50K"],
-                        ax=ax)
-            ax.set_xlabel("Predicted")
-            ax.set_ylabel("Actual")
+                        ax=ax, cbar_kws={"label": "Count"},
+                        annot_kws={"size": 14, "weight": "bold"})
+            ax.set_xlabel("Predicted Label", fontsize=12, fontweight="bold")
+            ax.set_ylabel("True Label", fontsize=12, fontweight="bold")
+            ax.set_title(f"Confusion Matrix - {model_name}", fontsize=14, fontweight="bold")
             st.pyplot(fig)
 
             st.subheader("📑 Classification Report")
@@ -113,19 +126,5 @@ if df is not None:
                                            target_names=["<=50K", ">50K"],
                                            output_dict=True)
             report_df = pd.DataFrame(report).transpose()
-            st.table(report_df)
-
-            # Download buttons
-            st.download_button(
-                label="⬇️ Download Evaluation Metrics (CSV)",
-                data=metrics_df.to_csv().encode("utf-8"),
-                file_name="evaluation_metrics.csv",
-                mime="text/csv"
-            )
-
-            st.download_button(
-                label="⬇️ Download Classification Report (CSV)",
-                data=report_df.to_csv().encode("utf-8"),
-                file_name="classification_report.csv",
-                mime="text/csv"
-            )
+            report_df_display = report_df.round(4)
+            st.table(report_df_display)
