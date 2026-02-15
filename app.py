@@ -1,11 +1,3 @@
-import logging
-
-# Silence Streamlit's missing ScriptRunContext warnings when running with plain
-# `python app.py`. Those messages are harmless but noisy; make the logger
-# error-level so they don't appear during local runs. Streamlit itself will
-# still show useful messages when run via `streamlit run`.
-logging.getLogger("streamlit.runtime.scriptrunner_utils.script_run_context").setLevel(logging.ERROR)
-
 import streamlit as st
 import pandas as pd
 import seaborn as sns
