@@ -49,12 +49,28 @@ if data_option == "Load from UCI URL":
     st.success(f"✅ Dataset loaded successfully! Shape: {df.shape}")
     st.dataframe(df.head(10), width='stretch')
 
+    # Download button for test CSV
+    st.download_button(
+        label="📥 Download Test CSV",
+        data=df.to_csv(index=False).encode("utf-8"),
+        file_name="adult_income_test.csv",
+        mime="text/csv"
+    )
+
 elif data_option == "Upload CSV file":
     uploaded_file = st.file_uploader("Upload Adult Income CSV (Test Data Only)", type=["csv"])
     if uploaded_file:
         df = pd.read_csv(uploaded_file)
         st.success(f"✅ Dataset uploaded successfully! Shape: {df.shape}")
         st.dataframe(df.head(10), width='stretch')
+
+        # Download button for uploaded test CSV
+        st.download_button(
+            label="📥 Download Test CSV",
+            data=uploaded_file.getvalue(),
+            file_name="adult_income_test.csv",
+            mime="text/csv"
+        )
 
 if df is not None:
     if target_column not in df.columns:
@@ -95,7 +111,6 @@ if df is not None:
 
             st.subheader("📊 Evaluation Metrics")
             metrics_df = pd.DataFrame(metrics, index=["Score"]).T
-            # Round metrics to 4 decimal places for better readability
             metrics_df_display = metrics_df.round(4)
             st.table(metrics_df_display)
 
