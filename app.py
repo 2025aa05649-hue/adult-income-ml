@@ -1,3 +1,11 @@
+import logging
+
+# Silence Streamlit's missing ScriptRunContext warnings when running with plain
+# `python app.py`. Those messages are harmless but noisy; make the logger
+# error-level so they don't appear during local runs. Streamlit itself will
+# still show useful messages when run via `streamlit run`.
+logging.getLogger("streamlit.runtime.scriptrunner_utils.script_run_context").setLevel(logging.ERROR)
+
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -16,6 +24,22 @@ from model.xgboost_model import train_and_evaluate as xgb
 
 st.set_page_config(page_title="Adult Income Classification")
 st.title("💼 Adult Income Classification")
+
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
+columns = [
+    "age","workclass","fnlwgt","education","education-num","marital-status",
+    "occupation","relationship","race","sex","capital-gain","capital-loss",
+    "hours-per-week","native-country","income"
+]
+df = pd.read_csv(url, header=None, names=columns, na_values=" ?", skipinitialspace=True)
+
+# Download button for test CSV
+st.download_button(
+    label="📥 Download Test CSV",
+    data=df.to_csv(index=False).encode("utf-8"),
+    file_name="adult_income_test.csv",
+    mime="text/csv"
+)
 
 # Dataset source selection
 data_option = st.radio(
@@ -36,26 +60,10 @@ target_column = st.text_input(
     help="Enter the name of your target/label column (default: income)"
 )
 
-df = None
 if data_option == "Load from UCI URL":
     st.info("Loading Adult Income dataset from UCI repository...")
-    url = "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
-    columns = [
-        "age","workclass","fnlwgt","education","education-num","marital-status",
-        "occupation","relationship","race","sex","capital-gain","capital-loss",
-        "hours-per-week","native-country","income"
-    ]
-    df = pd.read_csv(url, header=None, names=columns, na_values=" ?", skipinitialspace=True)
     st.success(f"✅ Dataset loaded successfully! Shape: {df.shape}")
     st.dataframe(df.head(10), width='stretch')
-
-    # Download button for test CSV
-    st.download_button(
-        label="📥 Download Test CSV",
-        data=df.to_csv(index=False).encode("utf-8"),
-        file_name="adult_income_test.csv",
-        mime="text/csv"
-    )
 
 elif data_option == "Upload CSV file":
     uploaded_file = st.file_uploader("Upload Adult Income CSV (Test Data Only)", type=["csv"])
