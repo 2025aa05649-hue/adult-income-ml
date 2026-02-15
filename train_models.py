@@ -24,7 +24,7 @@ from xgboost import XGBClassifier
 # --------------------------------------------------
 # 1. Load Dataset
 # --------------------------------------------------
-data = pd.read_csv("data/adult.csv")
+data = pd.read_csv("data/adultdataset.csv")
 
 # --------------------------------------------------
 # 2. Data Cleaning
